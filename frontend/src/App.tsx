@@ -3,6 +3,7 @@ import Footer from "components/footer";
 import DataTable from "components/dataTable";
 import BarCharts from "components/barCharts";
 import DonutCharts from "components/donutCharts";
+
 function App() {
   return (
     <>
