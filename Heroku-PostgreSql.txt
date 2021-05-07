@@ -1,0 +1,23 @@
+Heroku
+Login cvictorj17@gmail.com
+Senha cvc3#4$07&
+
+
+postgres://
+
+krpzsfxaphfvzx
+
+:
+
+ff87e90670b1c67f918423cc93ab2d527a25214393e22de7c41d6960033f094d
+
+@
+ec2-54-90-211-192.compute-1.amazonaws.com
+
+:
+
+5432
+
+/
+
+ddlihfjheucngi
