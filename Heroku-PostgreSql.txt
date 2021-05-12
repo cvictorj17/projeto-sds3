@@ -2,6 +2,12 @@ Heroku
 Login cvictorj17@gmail.com
 Senha cvc3#4$07&
 
+publicação:
+heroku login
+heroku git:remote -a sds3-cicero
+git remote -v
+git subtree push --prefix backend heroku main
+
 
 postgres://
 
