@@ -4,15 +4,17 @@ import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { SaleSum } from 'types/sale';
 import { BASE_URL } from 'utils/requests';
+import Spinner from 'react-bootstrap/Spinner';
 
 type ChartData = {
     labels: string[];
     series: number[];
+    loading: boolean;
 }
 
 const DonutCharts = () => {
 
-    const [chartData, setChartData] = useState<ChartData>({ labels: [], series: [] });
+    const [chartData, setChartData] = useState<ChartData>({ labels: [], series: [], loading: true });
 
     useEffect(() => {
         axios.get(`${BASE_URL}/sales/amount-by-seller`)
@@ -21,7 +23,7 @@ const DonutCharts = () => {
                 const myLabels = data.map(x => x.sellerName);
                 const mySeries = data.map(x => x.sum);
 
-                setChartData({ labels: myLabels, series: mySeries });
+                setChartData({ labels: myLabels, series: mySeries, loading: false });
             });
     }, [])
 
@@ -37,6 +39,11 @@ const DonutCharts = () => {
     }
 
     return (
+        chartData.loading ?
+            <div style={{textAlign:'center', marginTop:'40px'}}>
+                <Spinner animation="border" />
+            </div>
+            :
         <Chart
             options={{ ...options, labels: chartData.labels }}
             series={chartData.series}

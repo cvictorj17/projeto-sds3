@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { BASE_URL } from 'utils/requests';
 import { SaleSuccess } from 'types/sale';
 import { round } from 'utils/format';
+import Spinner from 'react-bootstrap/Spinner';
 
 type SeriesData = {
     name: string;
@@ -16,6 +17,7 @@ type ChartData = {
         categories: string[];
     };
     series: SeriesData[];
+    loading: boolean;
 }
 
 const BarCharts = () => {
@@ -29,7 +31,8 @@ const BarCharts = () => {
                 name: "",
                 data: []
             }
-        ]
+        ],
+        loading: true
     });
 
     useEffect(() => {
@@ -48,7 +51,8 @@ const BarCharts = () => {
                             name: "% Success",
                             data: mySeries
                         }
-                    ]
+                    ],
+                    loading: false
                 });
             });
     }, [])
@@ -74,12 +78,17 @@ const BarCharts = () => {
     // };
 
     return (
-        <Chart
-            options={{ ...options, xaxis: chartData.labels }}
-            series={chartData.series}
-            type="bar"
-            height="240"
-        />
+        chartData.loading ?
+            <div style={{textAlign:'center', marginTop:'40px'}}>
+                <Spinner animation="border" />
+            </div>
+            :
+            <Chart
+                options={{ ...options, xaxis: chartData.labels }}
+                series={chartData.series}
+                type="bar"
+                height="240"
+            />
     );
 }
 
